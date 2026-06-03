@@ -1,40 +1,51 @@
 <script setup lang="ts">
 import { RevealCommand } from "#imports";
 
-const props = defineProps({
-  line: { type: Number, required: true },
-  column: { type: Number, required: true },
-  token: { type: String, required: true },
-  clicked: Boolean,
-});
-
-async function click() {
-  if (!clicked.value) {
-    const command = new RevealCommand(props.line, props.column, props.token);
-    const data = await command.execute();
-    clicked.value = true;
-    if (data?.active) {
-      value.value = data.value!.toString();
-    }
-    refreshNuxtData("state");
-  }
-}
+const { line, column, token, wasclicked, mode } = defineProps<{
+  line: number;
+  column: number;
+  token: string;
+  wasclicked: boolean;
+  mode: { mode: string };
+}>();
 
 const x1 = ref(false);
 const x2 = ref(false);
 const x3 = ref(false);
 const x0 = ref(false);
-const clicked = ref(props.clicked);
+const clicked = ref(wasclicked);
 const value = ref("?");
+
+async function click() {
+  if (!clicked.value) {
+    if (mode.mode === "select") {
+      const command = new RevealCommand(line, column, token);
+      const data = await command.execute();
+      clicked.value = true;
+      if (data?.active) {
+        value.value = data.value!.toString();
+      }
+      refreshNuxtData("state");
+    } else if (mode.mode === "x0") {
+      x0.value = !x0.value;
+    } else if (mode.mode === "x1") {
+      x1.value = !x1.value;
+    } else if (mode.mode === "x2") {
+      x2.value = !x2.value;
+    } else if (mode.mode === "x3") {
+      x3.value = !x3.value;
+    }
+  }
+}
 </script>
 
 <template>
-  <button @click="click" v-if="!clicked">
+  <button @click="click" v-if="!clicked" class="game-cell">
     <table>
       <tbody>
         <tr>
           <td class="checker-dark spot-td">
-            <div class="marker" v-show="x0">O</div>
+            <div class="marker" v-show="x0">●</div>
           </td>
           <td class="checker-light spot-td"></td>
           <td class="checker-dark spot-td">
@@ -79,7 +90,7 @@ const value = ref("?");
   font-weight: bolder;
 }
 
-button {
+.game-cell {
   width: 63px;
   height: 63px;
   padding: 0px;
@@ -87,7 +98,7 @@ button {
   border-color: seagreen;
 }
 
-button:hover {
+.game-cell:hover {
   box-shadow: 0 0 5px white;
 }
 
@@ -97,6 +108,7 @@ button:hover {
 }
 
 .marker {
+  font-family: "Jersey 10", sans-serif;
   text-align: center;
   font-size: 8pt;
   color: yellow;

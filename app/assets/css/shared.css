@@ -2,3 +2,8 @@
   font-family: "Jersey 10", sans-serif;
   background-color: darkslategray;
 }
+
+.container {
+  justify-content: center;
+  display: flex;
+}

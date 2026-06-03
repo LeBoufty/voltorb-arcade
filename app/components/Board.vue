@@ -3,9 +3,10 @@ import type { LineInformation } from "~~/server/utils/Board";
 import Spot from "./Spot.vue";
 import type { Coordinates } from "~~/server/utils/Game";
 
-const { token } = defineProps<{
+const { token, revealed, mode } = defineProps<{
   token: string;
   revealed: Coordinates[];
+  mode: { mode: string };
 }>();
 
 let columns: LineInformation[] = [];
@@ -27,7 +28,8 @@ if (data.value?.information) {
             :line="l"
             :column="c"
             :token="token"
-            :clicked="revealed.includes({ line: l, column: c })"
+            :wasclicked="revealed.includes({ line: l, column: c })"
+            :mode="mode"
           />
         </td>
         <td><LineInfo :info="line_info" /></td>

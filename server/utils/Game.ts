@@ -36,8 +36,10 @@ export class Game {
     const value = this.board.values[line]![column]!;
     if (!this.revealed.includes({ line, column })) {
       this.revealed.push({ line, column });
-      this.updateScore(value);
-      if (value === 0 || this.score === this.board.maxScore) this.over = true;
+      if (!this.over) {
+        this.updateScore(value);
+        if (value === 0 || this.score === this.board.maxScore) this.over = true;
+      }
     }
     return {
       active: true,
