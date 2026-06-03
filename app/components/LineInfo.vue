@@ -15,8 +15,9 @@ const { info } = defineProps<{
 .info {
   height: 31px;
   width: 63px;
-  font-size: 16pt;
+  font-size: 20pt;
   font-weight: bolder;
+  text-align: center;
 }
 .voltorb {
   margin-bottom: 1px;

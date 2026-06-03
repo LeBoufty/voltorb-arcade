@@ -31,36 +31,50 @@ const value = ref("?");
     <table>
       <tbody>
         <tr>
-          <td class="checker-dark"><div v-show="x0">O</div></td>
-          <td class="checker-light"></td>
-          <td class="checker-dark"><div v-show="x1">1</div></td>
+          <td class="checker-dark spot-td">
+            <div class="marker" v-show="x0">O</div>
+          </td>
+          <td class="checker-light spot-td"></td>
+          <td class="checker-dark spot-td">
+            <div class="marker" v-show="x1">1</div>
+          </td>
         </tr>
         <tr>
-          <td class="checker-light"></td>
-          <td class="checker-dark"></td>
-          <td class="checker-light"></td>
+          <td class="checker-light spot-td"></td>
+          <td class="checker-dark spot-td"></td>
+          <td class="checker-light spot-td"></td>
         </tr>
         <tr>
-          <td class="checker-dark"><div v-show="x2">2</div></td>
-          <td class="checker-light"></td>
-          <td class="checker-dark"><div v-show="x3">3</div></td>
+          <td class="checker-dark spot-td">
+            <div class="marker" v-show="x2">2</div>
+          </td>
+          <td class="checker-light spot-td"></td>
+          <td class="checker-dark spot-td">
+            <div class="marker" v-show="x3">3</div>
+          </td>
         </tr>
       </tbody>
     </table>
   </button>
-  <div class="revealed" v-else>{{ value }}</div>
+  <div class="revealed" v-else>
+    <div class="revealed-value">{{ value }}</div>
+  </div>
 </template>
 
 <style>
+.revealed-value {
+  color: black;
+  font-size: 48px;
+  text-align: center;
+  margin-top: 4px;
+}
+
 .revealed {
   width: 59px;
   height: 59px;
   border: 2px solid saddlebrown;
   background-color: beige;
   font-weight: bolder;
-  color: black;
-  font-size: 32px;
-  text-align: center;
 }
 
 button {
@@ -72,13 +86,15 @@ button {
 }
 
 button:hover {
-  background-color: darkgreen;
-  border-color: green;
+  box-shadow: 0 0 5px white;
 }
 
-td {
+.spot-td {
   width: 15px;
   height: 15px;
+}
+
+.marker {
   text-align: center;
   font-size: 8pt;
   color: yellow;
