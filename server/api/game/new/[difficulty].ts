@@ -1,5 +1,4 @@
 import { DIFFICULTIES } from "#imports";
-import { generate_board_for_difficulty } from "#imports";
 import { create_game_for_difficulty } from "#imports";
 import { GameManager } from "#imports";
 import { BoardInformation } from "~~/server/utils/Board";

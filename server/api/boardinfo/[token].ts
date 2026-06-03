@@ -1,5 +1,5 @@
 import { BoardInformation } from "~~/server/utils/Board";
-import { GameManager } from "../../utils/GameManager"
+import { GameManager } from "#imports"
 
 export default defineEventHandler((event) => {
   const token = getRouterParam(event, 'token') ?? ""

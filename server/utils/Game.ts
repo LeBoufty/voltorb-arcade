@@ -9,8 +9,12 @@ interface Coordinates {
 interface RevealResponse {
   active: boolean;
   value?: number;
-  over?: boolean;
-  updated?: boolean;
+}
+
+export interface GameStateResponse {
+  score: number;
+  over: boolean;
+  revealed: Coordinates[];
 }
 
 export class Game {
@@ -30,19 +34,23 @@ export class Game {
 
   public reveal(line: number, column: number): RevealResponse {
     const value = this.board.values[line]![column]!;
-    let updated = false;
     if (!this.revealed.includes({ line, column })) {
       this.revealed.push({ line, column });
-      updated = true;
       this.updateScore(value);
       if (value === 0) this.over = true;
     }
     return {
       active: true,
       value,
-      over: this.over,
-      updated,
     };
+  }
+
+  public state(): GameStateResponse {
+    return {
+      score: this.score,
+      over: this.over,
+      revealed: this.revealed
+    }
   }
 
   private updateScore(value: number) {

@@ -1,5 +1,5 @@
-import { DIFFICULTIES } from "../../utils/difficulty";
-import { generate_board_for_difficulty } from "../../utils/Board";
+import { DIFFICULTIES } from "#imports";
+import { generate_board_for_difficulty } from "#imports";
 
 export default defineEventHandler((event) => {
   const difficulty = getRouterParam(event, 'difficulty') ?? ""
