@@ -1,7 +1,7 @@
 import { Board, generate_board_for_difficulty } from "./Board";
 import { v4 as uuidv4 } from "uuid";
 
-interface Coordinates {
+export interface Coordinates {
   line: number;
   column: number;
 }

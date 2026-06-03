@@ -7,5 +7,5 @@ if (data.value?.token) {
 </script>
 
 <template>
-  <Board :token="token" />
+  <Game :token="token" />
 </template>

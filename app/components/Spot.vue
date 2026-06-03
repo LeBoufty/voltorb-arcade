@@ -5,6 +5,7 @@ const props = defineProps({
   line: { type: Number, required: true },
   column: { type: Number, required: true },
   token: { type: String, required: true },
+  clicked: Boolean,
 });
 
 async function click() {
@@ -15,6 +16,7 @@ async function click() {
     if (data?.active) {
       value.value = data.value!.toString();
     }
+    refreshNuxtData("state");
   }
 }
 
@@ -22,7 +24,7 @@ const x1 = ref(false);
 const x2 = ref(false);
 const x3 = ref(false);
 const x0 = ref(false);
-const clicked = ref(false);
+const clicked = ref(props.clicked);
 const value = ref("?");
 </script>
 

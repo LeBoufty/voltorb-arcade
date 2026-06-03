@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import type { LineInformation } from "~~/server/utils/Board";
 import Spot from "./Spot.vue";
+import type { Coordinates } from "~~/server/utils/Game";
 
 const { token } = defineProps<{
   token: string;
+  revealed: Coordinates[];
 }>();
 
-let size = 0;
 let columns: LineInformation[] = [];
 let lines: LineInformation[] = [];
 
-const { data } = await useFetch(`/api/boardinfo/${token}`);
+const { data } = await useFetch(`/api/game/${token}/board`);
 if (data.value?.information) {
-  size = data.value.information.columns.length;
   columns = data.value.information.columns;
   lines = data.value.information.lines;
 }
@@ -23,7 +23,12 @@ if (data.value?.information) {
     <tbody>
       <tr v-for="(line_info, l) in lines">
         <td v-for="(, c) in columns">
-          <Spot :line="l" :column="c" :token="token" />
+          <Spot
+            :line="l"
+            :column="c"
+            :token="token"
+            :clicked="revealed.includes({ line: l, column: c })"
+          />
         </td>
         <td><LineInfo :info="line_info" /></td>
       </tr>
