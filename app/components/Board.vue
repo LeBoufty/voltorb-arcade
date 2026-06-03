@@ -21,11 +21,23 @@ if (data.value?.information) {
 <template>
   <table>
     <tbody>
-      <tr v-for="(, l) in lines">
+      <tr v-for="(line_info, l) in lines">
         <td v-for="(, c) in columns">
           <Spot :line="l" :column="c" :token="token" />
+        </td>
+        <td><LineInfo :info="line_info" /></td>
+      </tr>
+      <tr>
+        <td v-for="column_info in columns">
+          <LineInfo :info="column_info" />
         </td>
       </tr>
     </tbody>
   </table>
 </template>
+
+<style>
+td {
+  color: black;
+}
+</style>

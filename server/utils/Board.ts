@@ -6,10 +6,13 @@ export class Board {
   public size: number;
   /// The values behind every spot
   public values: number[][];
-  ///The difficulty of the board
+  /// The difficulty of the board
   /// VanillaX is a copy of the original HG/SS game
   public difficulty: string;
+  /// Information to be broadcasted to the client
   public information: BoardInformation;
+  /// Maximum possible score
+  public maxScore: number;
 
   constructor(size: number, spot_counts: LevelSpotCounts, difficulty?: string) {
     this.size = size;
@@ -22,6 +25,8 @@ export class Board {
         .concat(Array(Math.max(0, size ** 2 - spot_counts.x0 - spot_counts.x2 - spot_counts.x3)).fill(1))
         .slice(0, size ** 2) // Prevents board from overflowing
     )
+    // Compute max score
+    this.maxScore = (2 ** spot_counts.x2) * (3 ** spot_counts.x3);
     // Format board into table
     this.values = [];
     for (let i = 0; i < size; i++) {
