@@ -115,14 +115,14 @@ watch(
         {{ value }}
       </div>
       <div v-else>
-        <img class="voltorb" src="/assets/img/board/voltorb.png" />
+        <img class="voltorb-cell" src="/assets/img/board/voltorb.png" />
       </div>
     </div>
   </div>
 </template>
 
 <style>
-.voltorb {
+.voltorb-cell {
   width: 51px;
   background-color: transparent;
 }
