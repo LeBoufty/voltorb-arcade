@@ -70,11 +70,23 @@ async function click() {
     </table>
   </button>
   <div class="revealed" v-else>
-    <div class="revealed-value">{{ value }}</div>
+    <div class="revealed-value">
+      <div v-if="value !== '0'">
+        {{ value }}
+      </div>
+      <div v-else>
+        <img class="voltorb" src="/assets/img/board/voltorb.png" />
+      </div>
+    </div>
   </div>
 </template>
 
 <style>
+.voltorb {
+  width: 51px;
+  background-color: transparent;
+}
+
 .revealed-value {
   color: black;
   font-size: 48px;

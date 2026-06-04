@@ -23,7 +23,7 @@ if (data.value?.information) {
   <table>
     <tbody>
       <tr v-for="(line_info, l) in lines">
-        <td v-for="(, c) in columns">
+        <td v-for="(_, c) in columns">
           <Spot
             :line="l"
             :column="c"
