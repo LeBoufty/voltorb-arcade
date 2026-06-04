@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { RevealCommand } from "#imports";
 
-const { line, column, token, wasclicked, mode } = defineProps<{
+const { line, column, token, state, mode } = defineProps<{
   line: number;
   column: number;
   token: string;
-  wasclicked: boolean;
+  state: { score: number; revealed: Coordinates[]; over: boolean };
   mode: { mode: string };
 }>();
 
@@ -13,18 +13,19 @@ const x1 = ref(false);
 const x2 = ref(false);
 const x3 = ref(false);
 const x0 = ref(false);
-const clicked = ref(wasclicked);
+const clicked = ref(state.revealed.includes({ line, column }));
 const value = ref("?");
+const color = ref("safe");
 
 async function click() {
   if (!clicked.value) {
     if (mode.mode === "select") {
-      const command = new RevealCommand(line, column, token);
-      const data = await command.execute();
-      clicked.value = true;
-      if (data?.active) {
-        value.value = data.value!.toString();
+      const fetchedValue = await reveal_spot();
+      if (fetchedValue === 0) {
+        color.value = "error";
       }
+      value.value = fetchedValue!.toString();
+      clicked.value = true;
       refreshNuxtData("state");
     } else if (mode.mode === "x0") {
       x0.value = !x0.value;
@@ -37,6 +38,37 @@ async function click() {
     }
   }
 }
+
+// On refresh, re-fetch the value if the spot was revealed
+// Also reveal the spot if the game is over
+async function reveal_board() {
+  if (
+    (clicked.value && value.value === "?") ||
+    (state.over && !clicked.value)
+  ) {
+    const fetched = await reveal_spot();
+    if (!clicked.value) {
+      color.value = "gameover";
+    }
+    clicked.value = true;
+    value.value = fetched!.toString();
+  }
+}
+
+async function reveal_spot() {
+  const command = new RevealCommand(line, column, token);
+  const data = await command.execute();
+  return data?.value;
+}
+
+await reveal_board();
+watch(
+  () => state.over,
+  (newValue, _) => {
+    if (newValue) reveal_board();
+  },
+  { deep: true },
+);
 </script>
 
 <template>
@@ -69,7 +101,15 @@ async function click() {
       </tbody>
     </table>
   </button>
-  <div class="revealed" v-else>
+  <div
+    class="revealed"
+    :class="{
+      safecell: color === 'safe',
+      errorcell: color === 'error',
+      gameovercell: color === 'gameover',
+    }"
+    v-else
+  >
     <div class="revealed-value">
       <div v-if="value !== '0'">
         {{ value }}
@@ -98,8 +138,19 @@ async function click() {
   width: 59px;
   height: 59px;
   border: 2px solid saddlebrown;
-  background-color: beige;
   font-weight: bolder;
+}
+
+.safecell {
+  background-color: beige;
+}
+
+.errorcell {
+  background-color: red;
+}
+
+.gameovercell {
+  background-color: plum;
 }
 
 .game-cell {

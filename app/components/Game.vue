@@ -10,7 +10,6 @@ const mode = ref({ mode: "select" });
 const asyncState = await useAsyncData("state", () =>
   $fetch(`/api/game/${token}/state`),
 );
-const revealed = asyncState.data.value?.state?.revealed!;
 </script>
 
 <template>
@@ -19,7 +18,11 @@ const revealed = asyncState.data.value?.state?.revealed!;
       <tr>
         <td>
           <div class="board-wrapper">
-            <Board :token="token" :revealed="revealed" :mode="mode" />
+            <Board
+              :token="token"
+              :state="asyncState.data.value?.state!"
+              :mode="mode"
+            />
           </div>
         </td>
         <td><Notepad :mode="mode" /></td>
