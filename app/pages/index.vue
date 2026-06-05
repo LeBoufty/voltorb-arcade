@@ -1,6 +1,6 @@
 <script setup lang="ts">
 let token = "";
-const { data } = await useFetch("/api/game/new/Vanilla1");
+const { data } = await useFetch("/api/game/new/_Test7");
 if (data.value?.token) {
   token = data.value.token;
 }

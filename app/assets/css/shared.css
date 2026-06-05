@@ -1,9 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Jersey+10&display=swap");
+@import "tailwindcss";
+
 :root {
   font-family: "Jersey 10", sans-serif;
-  background-color: darkslategray;
+  --bg-primary: var(--color-green-900);
+  /* Game colors */
+  /* 1. Board */
+  --checker-dark: #008000;
+  --checker-light: #2e8b57;
+  --marker-color: #ffff00;
+  --cell-hover-glow: #ffffff;
+  --revealed-value-text: #000000;
+  --revealed-border: #8b4513;
+  --revealed-safe: #f5f5dc;
+  --revealed-error: var(--color-red-400);
+  --revealed-over: var(--color-purple-200);
+  /* 2. Information */
+  --voltorb-count-bg: #8b0000;
+  --voltorb-count-text: #ffffff;
+  --points-count-bg: #d3d3d3;
+  --points-count-text: #2f4f4f;
+  /* 3. Notepad */
+  --selected-mode: var(--color-lime-800);
+  --unselected-mode: var(--color-lime-950);
+  --notepad-selected-text: var(--color-yellow-500);
+  --notepad-unselected-text: var(--color-yellow-700);
+  --notepad-bg: var(--color-taupe-300);
 }
 
-.container {
-  justify-content: center;
-  display: flex;
+body {
+  background-color: var(--bg-primary);
 }

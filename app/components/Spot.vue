@@ -77,11 +77,11 @@ watch(
       <tbody>
         <tr>
           <td class="checker-dark spot-td">
-            <div class="marker" v-show="x0">●</div>
+            <div class="value-marker" v-show="x0">●</div>
           </td>
           <td class="checker-light spot-td"></td>
           <td class="checker-dark spot-td">
-            <div class="marker" v-show="x1">1</div>
+            <div class="value-marker" v-show="x1">1</div>
           </td>
         </tr>
         <tr>
@@ -91,11 +91,11 @@ watch(
         </tr>
         <tr>
           <td class="checker-dark spot-td">
-            <div class="marker" v-show="x2">2</div>
+            <div class="value-marker" v-show="x2">2</div>
           </td>
           <td class="checker-light spot-td"></td>
           <td class="checker-dark spot-td">
-            <div class="marker" v-show="x3">3</div>
+            <div class="value-marker" v-show="x3">3</div>
           </td>
         </tr>
       </tbody>
@@ -123,66 +123,70 @@ watch(
 
 <style>
 .voltorb-cell {
-  width: 51px;
+  width: 47px;
   background-color: transparent;
+  margin-left: 6px;
+  margin-top: 11px;
 }
 
 .revealed-value {
-  color: black;
+  color: var(--revealed-value-text);
   font-size: 48px;
   text-align: center;
-  margin-top: 4px;
+  margin-top: -5px;
 }
 
 .revealed {
-  width: 59px;
-  height: 59px;
-  border: 2px solid saddlebrown;
+  width: 63px;
+  height: 63px;
+  margin: 3px;
+  border: 2px solid var(--revealed-border);
   font-weight: bolder;
 }
 
 .safecell {
-  background-color: beige;
+  background-color: var(--revealed-safe);
 }
 
 .errorcell {
-  background-color: red;
+  background-color: var(--revealed-error);
 }
 
 .gameovercell {
-  background-color: plum;
+  background-color: var(--revealed-over);
 }
 
 .game-cell {
   width: 63px;
   height: 63px;
-  padding: 0px;
-  background-color: green;
-  border-color: seagreen;
+  padding-left: 3px;
+  margin: 3px;
+  background-color: var(--checker-dark);
+  border-color: var(--checker-light);
 }
 
 .game-cell:hover {
-  box-shadow: 0 0 5px white;
+  box-shadow: 0 0 5px var(--cell-hover-glow);
 }
 
 .spot-td {
-  width: 15px;
-  height: 15px;
+  width: 19px;
+  height: 19px;
 }
 
-.marker {
+.value-marker {
   font-family: "Jersey 10", sans-serif;
   text-align: center;
   font-size: 8pt;
-  color: yellow;
+  color: var(--marker-color);
   font-weight: bolder;
 }
 
 .checker-light {
-  background-color: seagreen;
+  background-color: var(--checker-light);
 }
 
 .checker-dark {
-  background-color: green;
+  background-color: var(--checker-dark);
 }
 </style>

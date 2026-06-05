@@ -13,27 +13,25 @@ const asyncState = await useAsyncData("state", () =>
 </script>
 
 <template>
-  <table>
-    <tbody>
-      <tr>
-        <td>
-          <div class="board-wrapper">
-            <Board
-              :token="token"
-              :state="asyncState.data.value?.state!"
-              :mode="mode"
-            />
-          </div>
-        </td>
-        <td><Notepad :mode="mode" /></td>
-      </tr>
-      <tr>
-        <td>
-          <div class="game-info-wrapper"><GameInfo :token="token" /></div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="bg-green-800 w-fit grid-cols-2 justify-center p-10 rounded-4xl">
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <div class="board-wrapper">
+              <Board
+                :token="token"
+                :state="asyncState.data.value?.state!"
+                :mode="mode"
+              />
+            </div>
+          </td>
+          <td><Notepad :mode="mode" /></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="game-info-wrapper"><GameInfo :token="token" /></div>
+  </div>
 </template>
 
 <style>

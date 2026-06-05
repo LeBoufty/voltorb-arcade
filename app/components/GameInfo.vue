@@ -8,9 +8,9 @@ const asyncState = await useAsyncData("state", () =>
 </script>
 
 <template>
-  <div class="info-container">
+  <div class="info-container text-center text-6xl rounded-2xl mt-5 w-auto">
     <div>
-      <h1>Score : {{ asyncState.data.value?.state?.score }}</h1>
+      <h1>Score : {{ asyncState.data.value?.state?.score }} pts.</h1>
     </div>
     <div v-if="asyncState.data.value?.state?.over">
       <h1 v-if="asyncState.data.value.state.score === 0">You lose !!!</h1>
@@ -21,10 +21,10 @@ const asyncState = await useAsyncData("state", () =>
 
 <style>
 .info-container {
-  display: grid;
+  /*display: grid;
   column-count: 1;
   align-items: center;
-  justify-content: center;
+  justify-content: center;*/
   background-color: mediumseagreen;
 }
 </style>
