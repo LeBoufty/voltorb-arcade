@@ -29,6 +29,12 @@
   /* 4. Game Information */
   --game-info-bg: var(--color-lime-800);
   --game-info-color: var(--color-zinc-200);
+  --result-bg: var(--color-green-950);
+  --quit-button: var(--color-teal-600);
+  --quit-button-hover: var(--color-teal-500);
+  --quit-button-pressed: var(--color-teal-700);
+  /* 5. Pet */
+  --pet-bg: var(--color-lime-50);
 }
 
 .pixel-text {

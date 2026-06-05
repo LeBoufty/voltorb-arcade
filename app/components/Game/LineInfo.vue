@@ -7,8 +7,10 @@ const { info } = defineProps<{
 </script>
 
 <template>
-  <div class="voltorb info">{{ info.voltorbs }}</div>
-  <div class="points info">{{ info.points }} pts</div>
+  <div class="mt-0.5 ml-1">
+    <div class="voltorb info rounded-t-lg">{{ info.voltorbs }}</div>
+    <div class="points info rounded-b-lg">{{ info.points }} pts</div>
+  </div>
 </template>
 
 <style>
@@ -21,11 +23,11 @@ const { info } = defineProps<{
 }
 .voltorb {
   margin-bottom: 1px;
-  background-color: darkred;
-  color: white;
+  background-color: var(--voltorb-count-bg);
+  color: var(--voltorb-count-text);
 }
 .points {
-  background-color: lightgray;
-  color: darkslategray;
+  background-color: var(--points-count-bg);
+  color: var(--points-count-text);
 }
 </style>
