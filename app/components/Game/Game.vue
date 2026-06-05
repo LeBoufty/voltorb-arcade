@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Board from "./Board.vue";
 import Notepad from "./Notepad.vue";
+import Pet from "./Pet.vue";
 
 const { token } = defineProps<{
   token: string;
