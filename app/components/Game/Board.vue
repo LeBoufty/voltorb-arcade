@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { LineInformation } from "~~/server/utils/Board";
 import Spot from "./Spot.vue";
+import LineInfo from "./LineInfo.vue";
 import type { Coordinates } from "~~/server/utils/Game";
 
 const { token, state, mode } = defineProps<{

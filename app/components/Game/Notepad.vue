@@ -91,7 +91,7 @@ const { mode } = defineProps<{
 }
 
 .two-cols {
-  padding: 8px 17px 10px 15px;
+  padding: 0px 17px 10px 20px;
   width: inherit;
   height: 64px;
 }

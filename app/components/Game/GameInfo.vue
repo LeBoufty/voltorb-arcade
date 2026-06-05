@@ -8,7 +8,9 @@ const asyncState = await useAsyncData("state", () =>
 </script>
 
 <template>
-  <div class="info-container text-center text-6xl rounded-2xl mt-5 w-auto">
+  <div
+    class="game-info-bg game-info-color text-center text-6xl rounded-2xl mt-5 w-auto"
+  >
     <div>
       <h1>Score : {{ asyncState.data.value?.state?.score }} pts.</h1>
     </div>
@@ -20,11 +22,11 @@ const asyncState = await useAsyncData("state", () =>
 </template>
 
 <style>
-.info-container {
-  /*display: grid;
-  column-count: 1;
-  align-items: center;
-  justify-content: center;*/
-  background-color: mediumseagreen;
+.game-info-bg {
+  background-color: var(--game-info-bg);
+}
+
+.game-info-color {
+  color: var(--game-info-color);
 }
 </style>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Board from "./Board.vue";
+import Notepad from "./Notepad.vue";
 
 const { token } = defineProps<{
   token: string;
@@ -13,7 +14,9 @@ const asyncState = await useAsyncData("state", () =>
 </script>
 
 <template>
-  <div class="bg-green-800 w-fit grid-cols-2 justify-center p-10 rounded-4xl">
+  <div
+    class="game-bg w-fit grid-cols-2 justify-center p-10 rounded-4xl pixel-text"
+  >
     <table>
       <tbody>
         <tr>
@@ -26,7 +29,10 @@ const asyncState = await useAsyncData("state", () =>
               />
             </div>
           </td>
-          <td><Notepad :mode="mode" /></td>
+          <td>
+            <Pet />
+            <Notepad :mode="mode" />
+          </td>
         </tr>
       </tbody>
     </table>
@@ -35,6 +41,10 @@ const asyncState = await useAsyncData("state", () =>
 </template>
 
 <style>
+.game-bg {
+  background-color: var(--game-bg);
+}
+
 .game-container {
   display: flex;
   column-count: 2;

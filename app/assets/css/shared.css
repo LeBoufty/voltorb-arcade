@@ -2,9 +2,9 @@
 @import "tailwindcss";
 
 :root {
-  font-family: "Jersey 10", sans-serif;
   --bg-primary: var(--color-green-900);
   /* Game colors */
+  --game-bg: var(--color-lime-950);
   /* 1. Board */
   --checker-dark: #008000;
   --checker-light: #2e8b57;
@@ -15,7 +15,7 @@
   --revealed-safe: #f5f5dc;
   --revealed-error: var(--color-red-400);
   --revealed-over: var(--color-purple-200);
-  /* 2. Information */
+  /* 2. Line Information */
   --voltorb-count-bg: #8b0000;
   --voltorb-count-text: #ffffff;
   --points-count-bg: #d3d3d3;
@@ -25,7 +25,14 @@
   --unselected-mode: var(--color-lime-950);
   --notepad-selected-text: var(--color-yellow-500);
   --notepad-unselected-text: var(--color-yellow-700);
-  --notepad-bg: var(--color-taupe-300);
+  --notepad-bg: var(--color-lime-500);
+  /* 4. Game Information */
+  --game-info-bg: var(--color-lime-800);
+  --game-info-color: var(--color-zinc-200);
+}
+
+.pixel-text {
+  font-family: "Jersey 10", sans-serif;
 }
 
 body {
